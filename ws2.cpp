@@ -16,6 +16,7 @@ void PartB() {
     for (int i = 0; i <= 700; i++) {
         arrayPtr[i] = i;
     }
+    delete[] arrayPtr;
 }
 
 // Look in arrayExamples.cpp createCharPointer
@@ -27,6 +28,7 @@ void PartC() {
     char *a = new char[len];
     strcpy(a, "Hello");
     cout << a << endl;
+    delete[] a;
 }
 
 
@@ -44,7 +46,10 @@ void PartD() {
     // contents of the array in ptr1 into the array in ptr2.
     // They wanted two separate arrays each with the same values.
     // Fix it so that is what we have.
-    ptr2 = ptr1;
+    for(int index = 0; index < 10; ++index){
+      ptr2[index] = ptr1[index];
+    }
+    //ptr2 = ptr1;
     cout << "ptr2 is pointing at: " << ptr2 << endl;
     if (ptr2[3] == 3) {
         cout << "passed" << endl;
@@ -53,7 +58,7 @@ void PartD() {
         cout << "failed" << endl;
     }
     delete [] ptr1;
-    //delete [] ptr2;
+    delete [] ptr2;
 }
 // In this case, we do want the two pointers to point to the same
 // array. But, we still messed something up. line 66 is a problem. Why?
@@ -63,18 +68,19 @@ void PartE() {
     for (int i = 0; i < 10; i++) {
         ptr1[i] = i;
     }
-    delete [] ptr1;
+    //delete [] ptr1;
     ptr1 = nullptr;
     for (int i = 0; i < 10; i++) {
         cout << ptr2[i]  << endl;
     }
+    delete[] ptr2;
 }
 
 int main() {
-    //PartB();  
-    //PartC();  
-    //PartD();  
-    //PartE();  
+    PartB();  
+    PartC();  
+    PartD();  
+    PartE();  
 
 
 }
